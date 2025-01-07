@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RZ1crypto - Your All-in-One Crypto Hub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">RZ1crypto</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#charts">Charts</a></li>
+                <li><a href="#calculator">Calculator</a></li>
+                <li><a href="#about">About</a></li>
+                <li>
+                    <button id="themeToggle" class="theme-toggle" aria-label="Toggle Dark Mode">
+                        <i class="fas fa-sun"></i>
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="hero-background">
+                <div class="gradient-sphere"></div>
+                <div class="gradient-sphere"></div>
+                <div class="gradient-sphere"></div>
+            </div>
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <span class="rz1">RZ1</span><span class="crypto">crypto</span>
+                </h1>
+                <p class="hero-tagline">Your All-in-One Crypto Hub</p>
+                <p class="hero-description">Track prices, calculate profits, and stay updated with the latest crypto news - all in one place.</p>
+                
+                <div class="hero-cta">
+                    <a href="#charts" class="cta-button primary">View Charts</a>
+                    <a href="#calculator" class="cta-button secondary">Calculate Profits</a>
+                </div>
+
+                <div class="hero-features">
+                    <div class="feature-card">
+                        <div class="feature-icon">24/7</div>
+                        <h3>Real-time Updates</h3>
+                        <p>Live cryptocurrency price tracking and alerts</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">100+</div>
+                        <h3>Cryptocurrencies</h3>
+                        <p>Wide range of supported digital assets</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <h3>Global Coverage</h3>
+                        <p>Comprehensive market data worldwide</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="features" class="features">
+            <h2>Our Features</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Crypto Price Comparison</h3>
+                    <p>Compare prices across multiple exchanges in real-time</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-wallet"></i>
+                    <h3>Portfolio Tracker</h3>
+                    <p>Track your crypto investments in one place</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-newspaper"></i>
+                    <h3>Crypto News Feed</h3>
+                    <p>Stay updated with the latest crypto news</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="charts" class="charts">
+            <h2>Crypto Price Charts</h2>
+            <div class="chart-container">
+                <div class="chart-controls">
+                    <div class="coin-selector">
+                        <button class="coin-btn active" data-coin="bitcoin">
+                            <img src="https://assets.coingecko.com/coins/images/1/small/bitcoin.png" alt="Bitcoin">
+                            Bitcoin
+                        </button>
+                        <button class="coin-btn" data-coin="ethereum">
+                            <img src="https://assets.coingecko.com/coins/images/279/small/ethereum.png" alt="Ethereum">
+                            Ethereum
+                        </button>
+                        <button class="coin-btn" data-coin="binancecoin">
+                            <img src="https://assets.coingecko.com/coins/images/825/small/bnb-icon2_2x.png" alt="BNB">
+                            BNB
+                        </button>
+                        <button class="coin-btn" data-coin="solana">
+                            <img src="https://assets.coingecko.com/coins/images/4128/small/solana.png" alt="Solana">
+                            Solana
+                        </button>
+                        <button class="coin-btn" data-coin="cardano">
+                            <img src="https://assets.coingecko.com/coins/images/975/small/cardano.png" alt="Cardano">
+                            Cardano
+                        </button>
+                    </div>
+                    <div class="timeframe-selector">
+                        <button class="time-btn" data-days="1">24h</button>
+                        <button class="time-btn" data-days="7">7d</button>
+                        <button class="time-btn active" data-days="30">30d</button>
+                        <button class="time-btn" data-days="90">90d</button>
+                        <button class="time-btn" data-days="365">1y</button>
+                    </div>
+                </div>
+                <div class="price-overview">
+                    <div class="current-stats">
+                        <div class="stat">
+                            <span class="stat-label">Current Price</span>
+                            <span class="stat-value" id="currentPrice">Loading...</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-label">24h Change</span>
+                            <span class="stat-value" id="priceChange">Loading...</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-label">24h High</span>
+                            <span class="stat-value" id="dayHigh">Loading...</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-label">24h Low</span>
+                            <span class="stat-value" id="dayLow">Loading...</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-label">Market Cap</span>
+                            <span class="stat-value" id="marketCap">Loading...</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-label">Volume (24h)</span>
+                            <span class="stat-value" id="volume">Loading...</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="chart-wrapper">
+                    <canvas id="cryptoChart"></canvas>
+                </div>
+                <div class="chart-info">
+                    <div class="last-updated">
+                        Last Updated: <span id="lastUpdated">Loading...</span>
+                    </div>
+                    <div class="chart-legend">
+                        <div class="legend-item">
+                            <span class="legend-color price"></span>
+                            <span>Price</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-color volume"></span>
+                            <span>Volume</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="calculator" class="calculator">
+            <h2>Profit/Loss Calculator</h2>
+            <div class="calculator-container">
+                <div class="calculator-card">
+                    <div class="input-group">
+                        <label for="coinAmount">Coin Amount</label>
+                        <input type="number" id="coinAmount" placeholder="Enter amount of coins" step="any" min="0">
+                    </div>
+                    <div class="input-group">
+                        <label for="purchasePrice">Purchase Price (USD)</label>
+                        <input type="number" id="purchasePrice" placeholder="Enter purchase price" step="any" min="0">
+                    </div>
+                    <div class="input-group">
+                        <label for="currentPrice">Current Price (USD)</label>
+                        <input type="number" id="currentPrice" placeholder="Enter current price" step="any" min="0">
+                    </div>
+                    <button id="calculateBtn" class="calculate-btn">Calculate</button>
+                    <div class="result-container">
+                        <div class="result-item">
+                            <span>Initial Investment:</span>
+                            <span id="initialInvestment">$0.00</span>
+                        </div>
+                        <div class="result-item">
+                            <span>Current Value:</span>
+                            <span id="currentValue">$0.00</span>
+                        </div>
+                        <div class="result-item">
+                            <span>Profit/Loss:</span>
+                            <span id="profitLoss">$0.00</span>
+                        </div>
+                        <div class="result-item">
+                            <span>Percentage:</span>
+                            <span id="percentage">0.00%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="portfolio" class="portfolio">
+            <h2>Portfolio Tracker</h2>
+            <div class="portfolio-container">
+                <div class="portfolio-card">
+                    <div class="portfolio-header">
+                        <h3>My Portfolio</h3>
+                        <div class="portfolio-total">
+                            Total Value: <span id="portfolioTotal">$0.00</span>
+                        </div>
+                    </div>
+                    <div class="add-asset">
+                        <div class="input-group">
+                            <select id="coinSelect" required>
+                                <option value="">Select Coin</option>
+                                <option value="bitcoin">Bitcoin (BTC)</option>
+                                <option value="ethereum">Ethereum (ETH)</option>
+                                <option value="binancecoin">Binance Coin (BNB)</option>
+                                <option value="cardano">Cardano (ADA)</option>
+                                <option value="solana">Solana (SOL)</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <input type="number" id="assetAmount" placeholder="Amount" step="any" min="0" required>
+                        </div>
+                        <div class="input-group">
+                            <input type="number" id="assetPrice" placeholder="Purchase Price (USD)" step="any" min="0" required>
+                        </div>
+                        <button id="addAsset" class="add-btn">Add to Portfolio</button>
+                    </div>
+                    <div class="portfolio-list">
+                        <div class="list-header">
+                            <span>Asset</span>
+                            <span>Amount</span>
+                            <span>Value</span>
+                            <span>P/L</span>
+                            <span></span>
+                        </div>
+                        <div id="assetsList" class="assets-list">
+                            <!-- Assets will be added here dynamically -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="converter" class="converter">
+            <h2>Crypto Converter</h2>
+            <div class="converter-container">
+                <div class="converter-card">
+                    <div class="converter-form">
+                        <div class="converter-row">
+                            <div class="input-group">
+                                <label for="fromAmount">Amount</label>
+                                <input type="number" id="fromAmount" placeholder="Enter amount" min="0" step="any">
+                            </div>
+                            <div class="input-group">
+                                <label for="fromCurrency">From</label>
+                                <select id="fromCurrency">
+                                    <option value="bitcoin">Bitcoin (BTC)</option>
+                                    <option value="ethereum">Ethereum (ETH)</option>
+                                    <option value="binancecoin">Binance Coin (BNB)</option>
+                                    <option value="cardano">Cardano (ADA)</option>
+                                    <option value="solana">Solana (SOL)</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="swap-button">
+                            <button id="swapCurrencies">
+                                <i class="fas fa-exchange-alt"></i>
+                            </button>
+                        </div>
+                        <div class="converter-row">
+                            <div class="input-group">
+                                <label for="toAmount">Converted Amount</label>
+                                <input type="number" id="toAmount" readonly>
+                            </div>
+                            <div class="input-group">
+                                <label for="toCurrency">To</label>
+                                <select id="toCurrency">
+                                    <option value="usd">US Dollar (USD)</option>
+                                    <option value="eur">Euro (EUR)</option>
+                                    <option value="gbp">British Pound (GBP)</option>
+                                    <option value="bitcoin">Bitcoin (BTC)</option>
+                                    <option value="ethereum">Ethereum (ETH)</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="conversion-info">
+                        <div class="rate-display">
+                            <span>1 <span id="fromCurrencyLabel">BTC</span> = </span>
+                            <span id="exchangeRate">Loading...</span>
+                            <span id="toCurrencyLabel">USD</span>
+                        </div>
+                        <div class="last-updated">
+                            Last updated: <span id="lastUpdated">Updating...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="watchlist" class="watchlist">
+            <h2>Watchlist</h2>
+            <div class="watchlist-container">
+                <div class="watchlist-card">
+                    <div class="add-coin">
+                        <div class="search-box">
+                            <select id="coinSearch" class="coin-search">
+                                <option value="">Select a coin to add</option>
+                                <option value="bitcoin">Bitcoin (BTC)</option>
+                                <option value="ethereum">Ethereum (ETH)</option>
+                                <option value="binancecoin">Binance Coin (BNB)</option>
+                                <option value="cardano">Cardano (ADA)</option>
+                                <option value="solana">Solana (SOL)</option>
+                                <option value="ripple">Ripple (XRP)</option>
+                                <option value="polkadot">Polkadot (DOT)</option>
+                                <option value="dogecoin">Dogecoin (DOGE)</option>
+                                <option value="avalanche-2">Avalanche (AVAX)</option>
+                                <option value="chainlink">Chainlink (LINK)</option>
+                            </select>
+                            <button id="addToWatchlist" class="add-btn">
+                                <i class="fas fa-plus"></i> Add to Watchlist
+                            </button>
+                        </div>
+                    </div>
+                    <div class="watchlist-header">
+                        <div class="coin-info">Coin</div>
+                        <div class="price">Price</div>
+                        <div class="change-24h">24h Change</div>
+                        <div class="market-cap">Market Cap</div>
+                        <div class="actions">Actions</div>
+                    </div>
+                    <div id="watchlistItems" class="watchlist-items">
+                        <!-- Watchlist items will be added here dynamically -->
+                    </div>
+                    <div class="watchlist-empty" id="watchlistEmpty">
+                        <i class="fas fa-search"></i>
+                        <p>Your watchlist is empty. Add coins to track their prices.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="priceAlerts" class="price-alerts">
+            <h2>Price Alerts</h2>
+            <div class="alerts-container">
+                <div class="alerts-card">
+                    <div class="add-alert">
+                        <div class="alert-form">
+                            <div class="input-group">
+                                <label for="alertCoin">Select Coin</label>
+                                <select id="alertCoin" required>
+                                    <option value="">Choose a cryptocurrency</option>
+                                    <option value="bitcoin">Bitcoin (BTC)</option>
+                                    <option value="ethereum">Ethereum (ETH)</option>
+                                    <option value="binancecoin">Binance Coin (BNB)</option>
+                                    <option value="cardano">Cardano (ADA)</option>
+                                    <option value="solana">Solana (SOL)</option>
+                                </select>
+                            </div>
+                            <div class="input-group">
+                                <label for="alertType">Alert Type</label>
+                                <select id="alertType" required>
+                                    <option value="above">Price Above</option>
+                                    <option value="below">Price Below</option>
+                                </select>
+                            </div>
+                            <div class="input-group">
+                                <label for="alertPrice">Target Price (USD)</label>
+                                <input type="number" id="alertPrice" placeholder="Enter target price" min="0" step="any" required>
+                            </div>
+                            <button id="addAlert" class="add-alert-btn">
+                                <i class="fas fa-bell"></i> Set Alert
+                            </button>
+                        </div>
+                    </div>
+                    <div class="alerts-list-container">
+                        <h3>Active Alerts</h3>
+                        <div id="alertsList" class="alerts-list">
+                            <!-- Alerts will be added here dynamically -->
+                        </div>
+                        <div class="alerts-empty" id="alertsEmpty">
+                            <i class="fas fa-bell-slash"></i>
+                            <p>No active price alerts. Set an alert to get notified when your target price is reached.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="miningCalculator" class="mining-calculator">
+            <h2>Mining Calculator</h2>
+            <div class="calculator-container">
+                <div class="calculator-card">
+                    <div class="calculator-form">
+                        <div class="input-group">
+                            <label for="miningCoin">Coin to Mine</label>
+                            <select id="miningCoin" required>
+                                <option value="">Select a coin</option>
+                                <option value="BTC">Bitcoin (BTC)</option>
+                                <option value="ETH">Ethereum (ETH)</option>
+                                <option value="ETC">Ethereum Classic (ETC)</option>
+                                <option value="RVN">Ravencoin (RVN)</option>
+                                <option value="ERG">Ergo (ERG)</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label for="hashrate">Hashrate</label>
+                            <div class="hashrate-input">
+                                <input type="number" id="hashrate" min="0" step="any" required>
+                                <select id="hashrateUnit">
+                                    <option value="H">H/s</option>
+                                    <option value="KH">KH/s</option>
+                                    <option value="MH">MH/s</option>
+                                    <option value="GH">GH/s</option>
+                                    <option value="TH" selected>TH/s</option>
+                                    <option value="PH">PH/s</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <label for="powerConsumption">Power Consumption (W)</label>
+                            <input type="number" id="powerConsumption" min="0" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="electricityCost">Electricity Cost ($/kWh)</label>
+                            <input type="number" id="electricityCost" min="0" step="0.01" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="poolFee">Pool Fee (%)</label>
+                            <input type="number" id="poolFee" min="0" max="100" step="0.1" value="1">
+                        </div>
+                        <button id="calculateMining" class="calculate-btn">
+                            <i class="fas fa-calculator"></i> Calculate Profits
+                        </button>
+                    </div>
+
+                    <div id="miningResults" class="mining-results" style="display: none;">
+                        <h3>Estimated Mining Profits</h3>
+                        <div class="results-grid">
+                            <div class="result-item">
+                                <div class="result-label">Daily Revenue</div>
+                                <div class="result-value" id="dailyRevenue">$0.00</div>
+                            </div>
+                            <div class="result-item">
+                                <div class="result-label">Daily Power Cost</div>
+                                <div class="result-value" id="dailyPowerCost">$0.00</div>
+                            </div>
+                            <div class="result-item">
+                                <div class="result-label">Daily Profit</div>
+                                <div class="result-value profit" id="dailyProfit">$0.00</div>
+                            </div>
+                            <div class="result-item">
+                                <div class="result-label">Monthly Revenue</div>
+                                <div class="result-value" id="monthlyRevenue">$0.00</div>
+                            </div>
+                            <div class="result-item">
+                                <div class="result-label">Monthly Power Cost</div>
+                                <div class="result-value" id="monthlyPowerCost">$0.00</div>
+                            </div>
+                            <div class="result-item">
+                                <div class="result-label">Monthly Profit</div>
+                                <div class="result-value profit" id="monthlyProfit">$0.00</div>
+                            </div>
+                        </div>
+                        <div class="mining-details">
+                            <div class="detail-item">
+                                <span>Network Difficulty:</span>
+                                <span id="networkDifficulty">-</span>
+                            </div>
+                            <div class="detail-item">
+                                <span>Network Hashrate:</span>
+                                <span id="networkHashrate">-</span>
+                            </div>
+                            <div class="detail-item">
+                                <span>Block Reward:</span>
+                                <span id="blockReward">-</span>
+                            </div>
+                        </div>
+                        <div class="update-time">
+                            Last updated: <span id="lastUpdated">-</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="cryptoHeatmap" class="crypto-heatmap">
+            <h2>Market Heatmap</h2>
+            <div class="heatmap-container">
+                <div class="heatmap-controls">
+                    <div class="timeframe-selector">
+                        <button class="timeframe-btn active" data-timeframe="24h">24h</button>
+                        <button class="timeframe-btn" data-timeframe="7d">7d</button>
+                        <button class="timeframe-btn" data-timeframe="30d">30d</button>
+                    </div>
+                    <div class="sort-selector">
+                        <label for="heatmapSort">Sort by:</label>
+                        <select id="heatmapSort">
+                            <option value="marketcap">Market Cap</option>
+                            <option value="price_change">Price Change</option>
+                            <option value="volume">Volume</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="heatmap-legend">
+                    <div class="legend-item">
+                        <div class="legend-color loss-10"></div>
+                        <span>-10%+</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color loss-5"></div>
+                        <span>-5%</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color neutral"></div>
+                        <span>0%</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color gain-5"></div>
+                        <span>+5%</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color gain-10"></div>
+                        <span>+10%+</span>
+                    </div>
+                </div>
+                <div id="heatmapChart" class="heatmap-chart">
+                    <div class="loading-spinner">
+                        <i class="fas fa-spinner fa-spin"></i>
+                        <span>Loading market data...</span>
+                    </div>
+                </div>
+                <div class="heatmap-tooltip" style="display: none;"></div>
+            </div>
+        </section>
+
+        <section id="learnCrypto" class="learn-crypto">
+            <h2>Learn Crypto</h2>
+            <div class="learn-container">
+                <div class="learn-categories">
+                    <button class="category-btn active" data-category="basics">
+                        <i class="fas fa-graduation-cap"></i>
+                        Crypto Basics
+                    </button>
+                    <button class="category-btn" data-category="blockchain">
+                        <i class="fas fa-link"></i>
+                        Blockchain Technology
+                    </button>
+                    <button class="category-btn" data-category="mining">
+                        <i class="fas fa-hammer"></i>
+                        Mining & Staking
+                    </button>
+                    <button class="category-btn" data-category="wallets">
+                        <i class="fas fa-wallet"></i>
+                        Wallets & Security
+                    </button>
+                    <button class="category-btn" data-category="trading">
+                        <i class="fas fa-chart-line"></i>
+                        Trading Basics
+                    </button>
+                </div>
+
+                <div class="learn-content">
+                    <!-- Crypto Basics -->
+                    <div class="content-section active" id="basics">
+                        <div class="learn-grid">
+                            <article class="learn-card">
+                                <div class="card-image">
+                                    <img src="https://images.unsplash.com/photo-1621504450181-5d356f61d307?w=500" alt="What is Cryptocurrency">
+                                </div>
+                                <div class="card-content">
+                                    <h3>What is Cryptocurrency?</h3>
+                                    <p>A beginner's guide to digital currencies and how they work.</p>
+                                    <div class="learn-topics">
+                                        <span class="topic">Digital Currency</span>
+                                        <span class="topic">Decentralization</span>
+                                        <span class="topic">Cryptography</span>
+                                    </div>
+                                    <div class="card-footer">
+                                        <span class="reading-time"><i class="far fa-clock"></i> 5 min read</span>
+                                        <button class="read-more-btn">Read More</button>
+                                    </div>
+                                </div>
+                            </article>
+
+                            <article class="learn-card video-card">
+                                <div class="card-video">
+                                    <iframe src="https://www.youtube.com/embed/1YyAzVmP9xQ" frameborder="0" allowfullscreen></iframe>
+                                </div>
+                                <div class="card-content">
+                                    <h3>Cryptocurrency Explained</h3>
+                                    <p>A simple and clear video explanation of cryptocurrency fundamentals.</p>
+                                    <div class="learn-topics">
+                                        <span class="topic">Video</span>
+                                        <span class="topic">Beginner</span>
+                                    </div>
+                                </div>
+                            </article>
+
+                            <div class="learn-infographic">
+                                <h3>Key Cryptocurrency Terms</h3>
+                                <div class="terms-grid">
+                                    <div class="term-item">
+                                        <i class="fas fa-key"></i>
+                                        <h4>Private Key</h4>
+                                        <p>Secret code that allows you to access and manage your crypto.</p>
+                                    </div>
+                                    <div class="term-item">
+                                        <i class="fas fa-book"></i>
+                                        <h4>Blockchain</h4>
+                                        <p>Digital ledger that records all cryptocurrency transactions.</p>
+                                    </div>
+                                    <div class="term-item">
+                                        <i class="fas fa-wallet"></i>
+                                        <h4>Wallet</h4>
+                                        <p>Software or hardware that stores your cryptocurrency.</p>
+                                    </div>
+                                    <div class="term-item">
+                                        <i class="fas fa-exchange-alt"></i>
+                                        <h4>Exchange</h4>
+                                        <p>Platform where you can buy, sell, and trade cryptocurrencies.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Blockchain Technology -->
+                    <div class="content-section" id="blockchain">
+                        <div class="learn-grid">
+                            <article class="learn-card">
+                                <div class="card-image">
+                                    <img src="https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=500" alt="Understanding Blockchain">
+                                </div>
+                                <div class="card-content">
+                                    <h3>Understanding Blockchain Technology</h3>
+                                    <p>Learn how blockchain works and why it's revolutionary.</p>
+                                    <div class="learn-topics">
+                                        <span class="topic">Blockchain</span>
+                                        <span class="topic">Technology</span>
+                                        <span class="topic">Innovation</span>
+                                    </div>
+                                    <div class="card-footer">
+                                        <span class="reading-time"><i class="far fa-clock"></i> 8 min read</span>
+                                        <button class="read-more-btn">Read More</button>
+                                    </div>
+                                </div>
+                            </article>
+
+                            <div class="learn-infographic blockchain-infographic">
+                                <h3>How Blockchain Works</h3>
+                                <div class="blockchain-steps">
+                                    <div class="step">
+                                        <div class="step-number">1</div>
+                                        <h4>Transaction Request</h4>
+                                        <p>A transaction is initiated between two parties.</p>
+                                    </div>
+                                    <div class="step">
+                                        <div class="step-number">2</div>
+                                        <h4>Block Creation</h4>
+                                        <p>Transaction is added to a new block with others.</p>
+                                    </div>
+                                    <div class="step">
+                                        <div class="step-number">3</div>
+                                        <h4>Verification</h4>
+                                        <p>Network nodes verify the transaction's validity.</p>
+                                    </div>
+                                    <div class="step">
+                                        <div class="step-number">4</div>
+                                        <h4>Block Added</h4>
+                                        <p>Block is added to the chain permanently.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Mining & Staking -->
+                    <div class="content-section" id="mining">
+                        <div class="learn-grid">
+                            <article class="learn-card">
+                                <div class="card-image">
+                                    <img src="https://images.unsplash.com/photo-1621504450181-5d356f61d307?w=500" alt="Crypto Mining Guide">
+                                </div>
+                                <div class="card-content">
+                                    <h3>Complete Guide to Crypto Mining</h3>
+                                    <p>Everything you need to know about mining cryptocurrencies.</p>
+                                    <div class="learn-topics">
+                                        <span class="topic">Mining</span>
+                                        <span class="topic">Hardware</span>
+                                        <span class="topic">Profitability</span>
+                                    </div>
+                                    <div class="card-footer">
+                                        <span class="reading-time"><i class="far fa-clock"></i> 10 min read</span>
+                                        <button class="read-more-btn">Read More</button>
+                                    </div>
+                                </div>
+                            </article>
+
+                            <div class="learn-comparison">
+                                <h3>Mining vs. Staking</h3>
+                                <div class="comparison-grid">
+                                    <div class="comparison-item">
+                                        <h4>Mining (Proof of Work)</h4>
+                                        <ul>
+                                            <li>Requires powerful hardware</li>
+                                            <li>High energy consumption</li>
+                                            <li>Competitive rewards</li>
+                                            <li>Higher initial investment</li>
+                                        </ul>
+                                    </div>
+                                    <div class="comparison-item">
+                                        <h4>Staking (Proof of Stake)</h4>
+                                        <ul>
+                                            <li>No special hardware needed</li>
+                                            <li>Energy efficient</li>
+                                            <li>Predictable rewards</li>
+                                            <li>Lower barrier to entry</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Wallets & Security -->
+                    <div class="content-section" id="wallets">
+                        <div class="learn-grid">
+                            <article class="learn-card">
+                                <div class="card-image">
+                                    <img src="https://images.unsplash.com/photo-1621504450181-5d356f61d307?w=500" alt="Crypto Wallets">
+                                </div>
+                                <div class="card-content">
+                                    <h3>Choosing the Right Crypto Wallet</h3>
+                                    <p>Learn about different types of wallets and how to secure your crypto.</p>
+                                    <div class="learn-topics">
+                                        <span class="topic">Security</span>
+                                        <span class="topic">Storage</span>
+                                        <span class="topic">Protection</span>
+                                    </div>
+                                    <div class="card-footer">
+                                        <span class="reading-time"><i class="far fa-clock"></i> 7 min read</span>
+                                        <button class="read-more-btn">Read More</button>
+                                    </div>
+                                </div>
+                            </article>
+
+                            <div class="security-checklist">
+                                <h3>Crypto Security Checklist</h3>
+                                <div class="checklist-items">
+                                    <div class="checklist-item">
+                                        <i class="fas fa-check-circle"></i>
+                                        <div class="checklist-content">
+                                            <h4>Use Hardware Wallets</h4>
+                                            <p>Store large amounts in cold storage.</p>
+                                        </div>
+                                    </div>
+                                    <div class="checklist-item">
+                                        <i class="fas fa-check-circle"></i>
+                                        <div class="checklist-content">
+                                            <h4>Enable 2FA</h4>
+                                            <p>Add an extra layer of security.</p>
+                                        </div>
+                                    </div>
+                                    <div class="checklist-item">
+                                        <i class="fas fa-check-circle"></i>
+                                        <div class="checklist-content">
+                                            <h4>Backup Private Keys</h4>
+                                            <p>Store backups in multiple secure locations.</p>
+                                        </div>
+                                    </div>
+                                    <div class="checklist-item">
+                                        <i class="fas fa-check-circle"></i>
+                                        <div class="checklist-content">
+                                            <h4>Use Strong Passwords</h4>
+                                            <p>Create unique passwords for each service.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Trading Basics -->
+                    <div class="content-section" id="trading">
+                        <div class="learn-grid">
+                            <article class="learn-card">
+                                <div class="card-image">
+                                    <img src="https://images.unsplash.com/photo-1621504450181-5d356f61d307?w=500" alt="Trading Basics">
+                                </div>
+                                <div class="card-content">
+                                    <h3>Cryptocurrency Trading 101</h3>
+                                    <p>Essential knowledge for beginning crypto traders.</p>
+                                    <div class="learn-topics">
+                                        <span class="topic">Trading</span>
+                                        <span class="topic">Analysis</span>
+                                        <span class="topic">Strategy</span>
+                                    </div>
+                                    <div class="card-footer">
+                                        <span class="reading-time"><i class="far fa-clock"></i> 12 min read</span>
+                                        <button class="read-more-btn">Read More</button>
+                                    </div>
+                                </div>
+                            </article>
+
+                            <div class="trading-basics">
+                                <h3>Essential Trading Terms</h3>
+                                <div class="terms-grid trading-terms">
+                                    <div class="term-item">
+                                        <i class="fas fa-arrow-up"></i>
+                                        <h4>Bull Market</h4>
+                                        <p>Market prices are rising or expected to rise.</p>
+                                    </div>
+                                    <div class="term-item">
+                                        <i class="fas fa-arrow-down"></i>
+                                        <h4>Bear Market</h4>
+                                        <p>Market prices are falling or expected to fall.</p>
+                                    </div>
+                                    <div class="term-item">
+                                        <i class="fas fa-balance-scale"></i>
+                                        <h4>Market Order</h4>
+                                        <p>Buy/sell at the current market price.</p>
+                                    </div>
+                                    <div class="term-item">
+                                        <i class="fas fa-flag"></i>
+                                        <h4>Limit Order</h4>
+                                        <p>Buy/sell at a specified price or better.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="dcaCalculator" class="dca-calculator">
+            <h2>DCA Calculator</h2>
+            <div class="dca-container">
+                <div class="calculator-inputs">
+                    <div class="input-group">
+                        <label for="dcaCoin">Cryptocurrency</label>
+                        <select id="dcaCoin" required>
+                            <option value="bitcoin">Bitcoin (BTC)</option>
+                            <option value="ethereum">Ethereum (ETH)</option>
+                            <option value="binancecoin">Binance Coin (BNB)</option>
+                            <option value="cardano">Cardano (ADA)</option>
+                            <option value="solana">Solana (SOL)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="dcaAmount">Investment Amount</label>
+                        <div class="amount-input">
+                            <span class="currency-symbol">$</span>
+                            <input type="number" id="dcaAmount" min="1" value="100" required>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="dcaFrequency">Investment Frequency</label>
+                        <select id="dcaFrequency" required>
+                            <option value="daily">Daily</option>
+                            <option value="weekly" selected>Weekly</option>
+                            <option value="biweekly">Bi-weekly</option>
+                            <option value="monthly">Monthly</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="dcaStartDate">Start Date</label>
+                        <input type="date" id="dcaStartDate" required>
+                    </div>
+
+                    <button id="calculateDCA" class="calculate-btn">
+                        <i class="fas fa-calculator"></i>
+                        Calculate Returns
+                    </button>
+                </div>
+
+                <div class="calculator-results">
+                    <div class="results-header">
+                        <h3>Investment Summary</h3>
+                        <div class="timeframe-selector">
+                            <button class="timeframe-btn active" data-timeframe="all">All Time</button>
+                            <button class="timeframe-btn" data-timeframe="year">1 Year</button>
+                            <button class="timeframe-btn" data-timeframe="month">1 Month</button>
+                        </div>
+                    </div>
+
+                    <div class="results-grid">
+                        <div class="result-card total-invested">
+                            <h4>Total Invested</h4>
+                            <div class="result-value">$0.00</div>
+                            <div class="result-subtitle">Over 0 investments</div>
+                        </div>
+                        
+                        <div class="result-card current-value">
+                            <h4>Current Value</h4>
+                            <div class="result-value">$0.00</div>
+                            <div class="result-subtitle">At current price</div>
+                        </div>
+                        
+                        <div class="result-card total-return">
+                            <h4>Total Return</h4>
+                            <div class="result-value">$0.00</div>
+                            <div class="result-percentage">0%</div>
+                        </div>
+
+                        <div class="result-card avg-price">
+                            <h4>Average Buy Price</h4>
+                            <div class="result-value">$0.00</div>
+                            <div class="result-subtitle">Per coin</div>
+                        </div>
+                    </div>
+
+                    <div class="chart-container">
+                        <canvas id="dcaChart"></canvas>
+                    </div>
+
+                    <div class="investment-details">
+                        <h3>Investment Details</h3>
+                        <div class="details-table">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Amount</th>
+                                        <th>Price</th>
+                                        <th>Coins</th>
+                                        <th>Value</th>
+                                        <th>Return</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="investmentTableBody">
+                                    <!-- Data will be populated by JavaScript -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="loading-overlay">
+                    <div class="spinner"></div>
+                    <p>Calculating returns...</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="trendingCoins" class="trending-coins">
+            <h2>Trending Coins</h2>
+            <div class="trending-container">
+                <div class="trending-header">
+                    <div class="refresh-button">
+                        <button id="refreshTrending">
+                            <i class="fas fa-sync-alt"></i>
+                            Refresh
+                        </button>
+                        <span class="last-updated">Updated: Just now</span>
+                    </div>
+                </div>
+
+                <div class="trending-grid">
+                    <!-- Trending coins will be populated here -->
+                </div>
+
+                <div class="trending-loading">
+                    <div class="spinner"></div>
+                    <p>Loading trending coins...</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="pricePrediction" class="price-prediction">
+            <h2>Price Predictions</h2>
+            <div class="prediction-container">
+                <div class="prediction-tabs">
+                    <button class="tab-btn active" data-tab="make-prediction">Make Prediction</button>
+                    <button class="tab-btn" data-tab="leaderboard">Leaderboard</button>
+                </div>
+
+                <div class="tab-content">
+                    <div class="tab-pane active" id="make-prediction">
+                        <form id="predictionForm" class="prediction-form">
+                            <div class="form-group">
+                                <label for="predictionCoin">Cryptocurrency</label>
+                                <select id="predictionCoin" required>
+                                    <option value="">Select a cryptocurrency</option>
+                                    <option value="bitcoin">Bitcoin (BTC)</option>
+                                    <option value="ethereum">Ethereum (ETH)</option>
+                                    <option value="binancecoin">BNB</option>
+                                    <option value="cardano">Cardano (ADA)</option>
+                                    <option value="solana">Solana (SOL)</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="predictionPrice">Predicted Price (USD)</label>
+                                <input type="number" id="predictionPrice" min="0" step="0.01" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="predictionDate">Target Date</label>
+                                <input type="date" id="predictionDate" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="predictionNickname">Your Nickname</label>
+                                <input type="text" id="predictionNickname" required>
+                            </div>
+                            <button type="submit" class="submit-prediction">Submit Prediction</button>
+                        </form>
+                    </div>
+
+                    <div class="tab-pane" id="leaderboard">
+                        <div class="leaderboard-filters">
+                            <select id="leaderboardTimeframe">
+                                <option value="all">All Time</option>
+                                <option value="month">Past Month</option>
+                                <option value="week">Past Week</option>
+                            </select>
+                            <select id="leaderboardCoin">
+                                <option value="all">All Coins</option>
+                                <option value="bitcoin">Bitcoin (BTC)</option>
+                                <option value="ethereum">Ethereum (ETH)</option>
+                                <option value="binancecoin">BNB</option>
+                                <option value="cardano">Cardano (ADA)</option>
+                                <option value="solana">Solana (SOL)</option>
+                            </select>
+                        </div>
+                        <div class="leaderboard-table">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Rank</th>
+                                        <th>Nickname</th>
+                                        <th>Coin</th>
+                                        <th>Predicted</th>
+                                        <th>Actual</th>
+                                        <th>Accuracy</th>
+                                        <th>Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="leaderboardBody">
+                                    <!-- Leaderboard entries will be populated here -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="about">
+            <h2>About</h2>
+            <p>Developed by SALAH-EDDINE RHAZOUANE</p>
+            <p>Empowering crypto enthusiasts with powerful tools and insights.</p>
+        </section>
+    </main>
+
+    <footer>
+        <div class="social-links">
+            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+        </div>
+        <p>&copy; 2025 RZ1crypto. All rights reserved.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="chart.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
