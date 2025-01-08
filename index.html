@@ -21,10 +21,15 @@
                 <li><a href="#calculator">Calculator</a></li>
                 <li><a href="#about">About</a></li>
                 <li>
-                    <button id="themeToggle" class="theme-toggle" aria-label="Toggle Dark Mode">
-                        <i class="fas fa-sun"></i>
-                        <i class="fas fa-moon"></i>
-                    </button>
+                    <div class="theme-switch-wrapper">
+                        <label class="theme-switch">
+                            <input type="checkbox" id="theme-toggle">
+                            <div class="theme-switch-slider">
+                                <i class="fas fa-sun"></i>
+                                <i class="fas fa-moon"></i>
+                            </div>
+                        </label>
+                    </div>
                 </li>
             </ul>
         </nav>
@@ -38,34 +43,28 @@
                 <div class="gradient-sphere"></div>
             </div>
             <div class="hero-content">
-                <h1 class="hero-title">
-                    <span class="rz1">RZ1</span><span class="crypto">crypto</span>
-                </h1>
-                <p class="hero-tagline">Your All-in-One Crypto Hub</p>
-                <p class="hero-description">Track prices, calculate profits, and stay updated with the latest crypto news - all in one place.</p>
-                
+                <h1 class="hero-title">RZ1crypto</h1>
+                <p class="hero-tagline">Your Ultimate Crypto Analytics Platform</p>
+                <p class="hero-description">Track real-time cryptocurrency prices, analyze market trends, and make informed decisions with our comprehensive suite of crypto tools.</p>
                 <div class="hero-cta">
                     <a href="#charts" class="cta-button primary">View Charts</a>
-                    <a href="#calculator" class="cta-button secondary">Calculate Profits</a>
+                    <a href="#calculator" class="cta-button secondary">Try Calculator</a>
                 </div>
-
                 <div class="hero-features">
                     <div class="feature-card">
-                        <div class="feature-icon">24/7</div>
-                        <h3>Real-time Updates</h3>
-                        <p>Live cryptocurrency price tracking and alerts</p>
+                        <i class="fas fa-chart-line feature-icon"></i>
+                        <h3>Real-Time Charts</h3>
+                        <p>Track cryptocurrency prices with interactive charts and detailed market data</p>
                     </div>
                     <div class="feature-card">
-                        <div class="feature-icon">100+</div>
-                        <h3>Cryptocurrencies</h3>
-                        <p>Wide range of supported digital assets</p>
+                        <i class="fas fa-calculator feature-icon"></i>
+                        <h3>Profit Calculator</h3>
+                        <p>Calculate your potential profits and losses with our advanced calculator</p>
                     </div>
                     <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-globe"></i>
-                        </div>
-                        <h3>Global Coverage</h3>
-                        <p>Comprehensive market data worldwide</p>
+                        <i class="fas fa-sync-alt feature-icon"></i>
+                        <h3>Live Updates</h3>
+                        <p>Get instant updates on price changes and market movements</p>
                     </div>
                 </div>
             </div>
@@ -92,8 +91,10 @@
             </div>
         </section>
 
-        <section id="charts" class="charts">
-            <h2>Crypto Price Charts</h2>
+        <section id="charts" class="chart-section">
+            <div class="section-header">
+                <h2 class="section-title">Crypto Price Charts</h2>
+            </div>
             <div class="chart-container">
                 <div class="chart-controls">
                     <div class="coin-selector">
@@ -155,6 +156,8 @@
                     </div>
                 </div>
                 <div class="chart-wrapper">
+                    <div class="loading-spinner"></div>
+                    <div class="error-message">Failed to load chart data. Please try again later.</div>
                     <canvas id="cryptoChart"></canvas>
                 </div>
                 <div class="chart-info">
@@ -175,8 +178,10 @@
             </div>
         </section>
 
-        <section id="calculator" class="calculator">
-            <h2>Profit/Loss Calculator</h2>
+        <section id="calculator" class="calculator-section">
+            <div class="section-header">
+                <h2 class="section-title">Profit/Loss Calculator</h2>
+            </div>
             <div class="calculator-container">
                 <div class="calculator-card">
                     <div class="input-group">
@@ -1083,6 +1088,7 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="theme.js"></script>
     <script src="chart.js"></script>
     <script src="script.js"></script>
 </body>

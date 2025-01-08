@@ -128,25 +128,28 @@ async function initializeChart() {
     });
 }
 
-// Update chart colors when theme changes
+// Function to update chart colors based on theme
 function updateChartColors(colors) {
-    if (!cryptoChart) return;
-
-    cryptoChart.data.datasets[0].borderColor = colors.primaryColor;
-    cryptoChart.data.datasets[1].borderColor = colors.secondaryColor;
-    cryptoChart.data.datasets[1].backgroundColor = `${colors.secondaryColor}20`;
-
-    cryptoChart.options.plugins.tooltip.backgroundColor = colors.textColor === '#ffffff' ? '#1a1a1a' : '#ffffff';
-    cryptoChart.options.plugins.tooltip.titleColor = colors.textColor === '#ffffff' ? '#ffffff' : '#1a1a1a';
-    cryptoChart.options.plugins.tooltip.bodyColor = colors.textColor === '#ffffff' ? '#ffffff' : '#1a1a1a';
-    cryptoChart.options.plugins.tooltip.borderColor = colors.gridColor;
-
-    cryptoChart.options.scales.x.ticks.color = colors.textColor;
-    cryptoChart.options.scales.price.ticks.color = colors.textColor;
-    cryptoChart.options.scales.volume.ticks.color = colors.textColor;
-    cryptoChart.options.scales.price.grid.color = colors.gridColor;
-
-    cryptoChart.update();
+    if (window.cryptoChart && window.cryptoChart.chart) {
+        const chart = window.cryptoChart.chart;
+        
+        // Update grid lines
+        chart.options.scales.x.grid.color = colors.gridColor;
+        chart.options.scales.y.grid.color = colors.gridColor;
+        
+        // Update text colors
+        chart.options.scales.x.ticks.color = colors.textColor;
+        chart.options.scales.y.ticks.color = colors.textColor;
+        
+        // Update dataset colors
+        if (chart.data.datasets.length > 0) {
+            chart.data.datasets[0].borderColor = colors.primaryColor;
+            chart.data.datasets[0].backgroundColor = colors.secondaryColor;
+        }
+        
+        // Update chart
+        chart.update();
+    }
 }
 
 // Fetch price data from CoinGecko API
@@ -163,23 +166,53 @@ async function fetchPriceData(coin, days) {
 
 // Update chart with new data
 async function updateChartData() {
-    const data = await fetchPriceData(currentCoin, currentTimeframe);
-    if (!data) return;
+    const chartWrapper = document.querySelector('.chart-wrapper');
+    const errorMessage = document.querySelector('.error-message');
+    
+    try {
+        // Show loading state
+        chartWrapper.classList.add('loading');
+        errorMessage.classList.remove('visible');
+        
+        const data = await fetchPriceData(currentCoin, currentTimeframe);
+        if (!data) throw new Error('No data received');
 
-    const prices = data.prices;
-    const volumes = data.total_volumes;
+        const prices = data.prices;
+        const volumes = data.total_volumes;
 
-    const labels = prices.map(price => new Date(price[0]).toLocaleDateString());
-    const priceData = prices.map(price => price[1]);
-    const volumeData = volumes.map(volume => volume[1]);
+        const labels = prices.map(price => new Date(price[0]).toLocaleDateString());
+        const priceData = prices.map(price => price[1]);
+        const volumeData = volumes.map(volume => volume[1]);
 
-    cryptoChart.data.labels = labels;
-    cryptoChart.data.datasets[0].data = priceData;
-    cryptoChart.data.datasets[1].data = volumeData;
-    cryptoChart.update();
+        cryptoChart.data.labels = labels;
+        cryptoChart.data.datasets[0].data = priceData;
+        cryptoChart.data.datasets[1].data = volumeData;
+        cryptoChart.update();
 
-    // Update price statistics
-    updatePriceStats(priceData, volumeData);
+        // Update price statistics
+        updatePriceStats(priceData, volumeData);
+        
+    } catch (error) {
+        console.error('Error updating chart:', error);
+        errorMessage.classList.add('visible');
+        // Reset chart data
+        cryptoChart.data.labels = [];
+        cryptoChart.data.datasets[0].data = [];
+        cryptoChart.data.datasets[1].data = [];
+        cryptoChart.update();
+        
+        // Reset stats
+        document.getElementById('currentPrice').textContent = 'N/A';
+        document.getElementById('priceChange').textContent = 'N/A';
+        document.getElementById('dayHigh').textContent = 'N/A';
+        document.getElementById('dayLow').textContent = 'N/A';
+        document.getElementById('volume').textContent = 'N/A';
+        document.getElementById('marketCap').textContent = 'N/A';
+        
+    } finally {
+        // Hide loading state
+        chartWrapper.classList.remove('loading');
+    }
 }
 
 // Update price statistics
@@ -218,13 +251,29 @@ function formatPercentage(value) {
     return value.toFixed(2) + '%';
 }
 
+// Add rate limiting to prevent too many API calls
+function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}
+
+// Debounced version of updateChartData
+const debouncedUpdateChart = debounce(updateChartData, 300);
+
 // Event listeners for coin selection
 document.querySelectorAll('.coin-btn').forEach(button => {
     button.addEventListener('click', async function() {
         document.querySelector('.coin-btn.active').classList.remove('active');
         this.classList.add('active');
         currentCoin = this.dataset.coin;
-        await updateChartData();
+        await debouncedUpdateChart();
     });
 });
 
@@ -234,7 +283,7 @@ document.querySelectorAll('.time-btn').forEach(button => {
         document.querySelector('.time-btn.active').classList.remove('active');
         this.classList.add('active');
         currentTimeframe = this.dataset.days;
-        await updateChartData();
+        await debouncedUpdateChart();
     });
 });
 

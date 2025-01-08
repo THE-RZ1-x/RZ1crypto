@@ -137,12 +137,58 @@ const PredictionManager = {
     }
 };
 
+// Theme Switcher
+function initializeTheme() {
+    const themeToggle = document.getElementById('theme-toggle');
+    const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    
+    // Set initial theme based on user's system preference or stored preference
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+        document.documentElement.setAttribute('data-theme', savedTheme);
+        themeToggle.checked = savedTheme === 'dark';
+    } else {
+        const isDark = prefersDarkScheme.matches;
+        document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+        themeToggle.checked = isDark;
+    }
+
+    // Theme toggle event listener
+    themeToggle.addEventListener('change', function() {
+        const newTheme = this.checked ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        
+        // Update chart colors if chart exists
+        if (typeof updateChartColors === 'function') {
+            const colors = getThemeColors();
+            updateChartColors(colors);
+        }
+    });
+
+    // Listen for system theme changes
+    prefersDarkScheme.addEventListener('change', (e) => {
+        if (!localStorage.getItem('theme')) {
+            const newTheme = e.matches ? 'dark' : 'light';
+            document.documentElement.setAttribute('data-theme', newTheme);
+            themeToggle.checked = e.matches;
+            
+            // Update chart colors if chart exists
+            if (typeof updateChartColors === 'function') {
+                const colors = getThemeColors();
+                updateChartColors(colors);
+            }
+        }
+    });
+}
+
 // Initialize everything when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     initializeFeatureFilters();
     MarketAPI.getGlobalStats();
     MarketAPI.getTrendingCoins();
     PredictionManager.updateLeaderboard();
+    initializeTheme();
 
     // Add scroll animation for sections
     const sections = document.querySelectorAll('section');
