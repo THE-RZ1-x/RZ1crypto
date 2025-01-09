@@ -14,7 +14,7 @@ A modern cryptocurrency tracking platform built with HTML, CSS, and JavaScript.
 
 ## Live Demo
 
-Visit [RZ1crypto](https://your-username.github.io/rz1crypto) to see the live demo.
+Visit [RZ1crypto](https://the-rz1-x.github.io/RZ1crypto/) to see the live demo.
 
 ## Technologies Used
 
